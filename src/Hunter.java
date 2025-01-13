@@ -23,9 +23,9 @@ public class Hunter {
         gold = startingGold;
 
         if (test){
-            kit = new String[]{"water", "rope", "machete", "horse", "boat"};
+            kit = new String[]{"water", "rope", "boots", "machete", "horse", "boat"};
         } else {
-            kit = new String[5];
+            kit = new String[6];
         }
     }
 
