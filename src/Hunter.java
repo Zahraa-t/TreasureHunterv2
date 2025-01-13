@@ -35,6 +35,10 @@ public class Hunter {
         return hunterName;
     }
 
+    public int getGold() {
+        return gold;
+    }
+
     /**
      * Updates the amount of gold the hunter has.
      *
@@ -42,9 +46,6 @@ public class Hunter {
      */
     public void changeGold(int modifier) {
         gold += modifier;
-        if (gold < 0) {
-            gold = 0;
-        }
     }
 
     /**
@@ -156,6 +157,18 @@ public class Hunter {
     }
 
     /**
+     *
+     * @return A boolean that tells you if the game has ended
+     */
+
+    public boolean gameOver(){
+        if (gold<0){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Searches kit Array for the index of the specified value.
      *
      * @param item String to look for.
@@ -199,4 +212,5 @@ public class Hunter {
         }
         return -1;
     }
+
 }

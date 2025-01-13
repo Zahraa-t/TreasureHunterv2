@@ -136,8 +136,11 @@ public class TreasureHunter {
             currentTown.lookForTrouble();
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+        }else if (hunter.gameOver()){
+            System.out.println("GAME OVER"); // TEST THIS PLEASE
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
     }
+
 }
