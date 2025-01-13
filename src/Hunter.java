@@ -16,11 +16,19 @@ public class Hunter {
      * @param hunterName The hunter's name.
      * @param startingGold The gold the hunter starts with.
      */
-    public Hunter(String hunterName, int startingGold) {
+    public Hunter(String hunterName, int startingGold, boolean test) {
         this.hunterName = hunterName;
-        kit = new String[5]; // only 5 possible items can be stored in kit
+
+        // only 5 possible items can be stored in kit
         gold = startingGold;
+
+        if (test){
+            kit = new String[]{"water", "rope", "machete", "horse", "boat"};
+        } else {
+            kit = new String[5];
+        }
     }
+
 
     //Accessors
     public String getHunterName() {
