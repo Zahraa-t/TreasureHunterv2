@@ -145,14 +145,14 @@ public class Shop {
             return WATER_COST;
         } else if (item.equals("rope")) {
             return ROPE_COST;
+        } else if (item.equals("boots")) {
+            return BOOTS_COST;
         } else if (item.equals("machete")) {
             return MACHETE_COST;
         } else if (item.equals("horse")) {
             return HORSE_COST;
         } else if (item.equals("boat")) {
             return BOAT_COST;
-        } else if (item.equals("boat")) {
-            return BOOTS_COST;
         }else {
             return 0;
         }
