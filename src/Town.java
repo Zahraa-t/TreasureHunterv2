@@ -12,6 +12,7 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
     private boolean dug;
+    private boolean easy;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -19,7 +20,7 @@ public class Town {
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness) {
+    public Town(Shop shop, double toughness, boolean e) {
         this.shop = shop;
         this.terrain = getNewTerrain();
 
@@ -31,6 +32,7 @@ public class Town {
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
         dug = false;
+        easy = e;
     }
 
     public Terrain getTerrain() {
@@ -69,9 +71,11 @@ public class Town {
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
-            if (checkItemBreak()) {
-                hunter.removeItemFromKit(item);
-                printMessage += "\nUnfortunately, you lost your "+item;
+            if (!easy) {
+                if (checkItemBreak()) {
+                    hunter.removeItemFromKit(item);
+                    printMessage += "\nUnfortunately, you lost your " + item;
+                }
             }
             return true;
         }
