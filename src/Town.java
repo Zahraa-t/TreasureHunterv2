@@ -11,6 +11,7 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private boolean dug;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -29,6 +30,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        dug = false;
     }
 
     public Terrain getTerrain() {
@@ -39,6 +41,8 @@ public class Town {
         return printMessage;
     }
 
+    public boolean isDug() { return dug; }
+
     /**
      * Assigns an object to the Hunter in town.
      *
@@ -46,6 +50,7 @@ public class Town {
      */
     public void hunterArrives(Hunter hunter) {
         this.hunter = hunter;
+        dug = false;
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
         if (toughTown) {
             printMessage += "\nIt's pretty rough around here, so watch yourself.";
@@ -115,6 +120,26 @@ public class Town {
 
     public String infoString() {
         return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
+    }
+
+    public void dig(){
+        if (!isDug()) {
+            if (hunter.hasItemInKit("shovel")) {
+                int randomNum = (int) (Math.random() * 2) + 1;
+                if (randomNum == 1) {
+                    int goldDug = (int)(Math.random()*20)+1;
+                    System.out.println("You dug up " +goldDug+" gold!");
+                    hunter.changeGold(goldDug);
+                } else {
+                    System.out.println("You dug but only found dirt");
+                }
+                dug = true;
+            } else {
+                System.out.println("You can't dig for gold without a shovel!");
+            }
+        } else {
+            System.out.println("You already dug for gold in this town.");
+        }
     }
 
     /**
