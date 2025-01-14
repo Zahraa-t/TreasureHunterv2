@@ -20,7 +20,7 @@ public class Hunter {
     public Hunter(String hunterName, int startingGold, boolean test) {
         this.hunterName = hunterName;
 
-        // only 6 possible items can be stored in kit
+        // only 5 possible items can be stored in kit
         gold = startingGold;
 
         if (test){
@@ -111,25 +111,6 @@ public class Hunter {
         }
         return false;
     }
-
-    public String getTreasure() {
-        //check if town is already searched or not with the array
-        //or change so it tracks what towns you've been to and restrict from there
-        double rnd = (int) (Math.random() * 4) + 1;
-        String treasure = "";
-        if (rnd == 1) {
-            treasure = "a crown";
-        } else if (rnd == 2) {
-            treasure = "a trophy";
-        } else if (rnd == 3) {
-            treasure = "a gem";
-        } else {
-            treasure = "dust";
-            return "You found a " + treasure + "!";
-        }
-        addItem(treasure);
-        return "You found a " + treasure + "!";
-     }
 
     /**
      * Checks if the kit Array has the specified item.

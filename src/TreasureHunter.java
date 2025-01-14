@@ -16,7 +16,9 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean easyMode;
     private boolean gameOver;
+    private boolean exit;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -26,7 +28,9 @@ public class TreasureHunter {
         currentTown = null;
         hunter = null;
         hardMode = false;
+        easyMode = false;
         gameOver = false;
+        exit = false;
     }
 
     /**
@@ -36,8 +40,8 @@ public class TreasureHunter {
             welcomePlayer();
             enterTown();
             showMenu();
-            if (gameOver){
-                System.out.println(Colors.RED+"GAME OVER");
+            if (gameOver) {
+                System.out.println(Colors.RED + "GAME OVER");
             }
     }
 
@@ -52,14 +56,16 @@ public class TreasureHunter {
 
         // set hunter instance variable
 
-        System.out.print("Hard mode? (y/n): ");
+        System.out.print("Easy, Normal, or Hard mode (e/n/h): ");
         String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
+        if (hard.equals("h")) {
             hardMode = true;
             hunter = new Hunter(name, 20, false);
+        } else if (hard.equals("e")){
+            easyMode = true;
+            hunter = new Hunter(name, 40, false);
         } else if (hard.equals("test")){
             hunter = new Hunter(name, 100, true);
-
         } else {
             hunter = new Hunter(name, 20, false);
         }
@@ -77,6 +83,9 @@ public class TreasureHunter {
 
             // and the town is "tougher"
             toughness = 0.75;
+        } else if (easyMode){
+            markdown = 1;
+            toughness = 0.25;
         }
 
         // note that we don't need to access the Shop object
@@ -87,7 +96,7 @@ public class TreasureHunter {
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
-        currentTown = new Town(shop, toughness);
+        currentTown = new Town(shop, toughness, easyMode);
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
@@ -105,7 +114,6 @@ public class TreasureHunter {
         String choice = "";
         while (!choice.equals("x")&&!gameOver) {
             System.out.println();
-            System.out.println(currentTown.getLatestNews());
             System.out.println("***");
             System.out.println(hunter.infoString());
             System.out.println(currentTown.infoString());
@@ -115,11 +123,15 @@ public class TreasureHunter {
             System.out.println("(H)unt for treasure.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
+            System.out.println("(D)ig for gold.");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
+            if (!exit) {
+                System.out.println(currentTown.getLatestNews());//BRAWL IS PRINTED HERE
+            }
         }
     }
 
@@ -142,14 +154,17 @@ public class TreasureHunter {
                 hunter.getTreasure();
             } else if (choice.equals("l")) {
                 currentTown.lookForTrouble();
-                if (hunter.gameOver()){
-                    gameOver=true;
-                }
             } else if (choice.equals("x")) {
                 System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+                exit = true;
+            } else if (choice.equals("d")){
+                currentTown.dig();
             } else {
                 System.out.println("Yikes! That's an invalid option! Try again.");
             }
+        if (hunter.gameOver()){
+            gameOver=true;
+        }
 
     }
 
