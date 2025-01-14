@@ -17,6 +17,7 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
     private boolean gameOver;
+    private boolean exit;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -27,6 +28,7 @@ public class TreasureHunter {
         hunter = null;
         hardMode = false;
         gameOver = false;
+        exit = false;
     }
 
     /**
@@ -118,7 +120,9 @@ public class TreasureHunter {
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
-            System.out.println(currentTown.getLatestNews()); //BRAWL IS PRINTED HERE
+            if (!exit) {
+                System.out.println(currentTown.getLatestNews());//BRAWL IS PRINTED HERE
+            }
         }
     }
 
@@ -141,6 +145,7 @@ public class TreasureHunter {
                 currentTown.lookForTrouble();
             } else if (choice.equals("x")) {
                 System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+                exit = true;
             } else {
                 System.out.println("Yikes! That's an invalid option! Try again.");
             }
