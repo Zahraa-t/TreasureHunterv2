@@ -36,7 +36,9 @@ public class TreasureHunter {
             welcomePlayer();
             enterTown();
             showMenu();
-            System.out.println(Colors.RED+"GAME OVER");
+            if (gameOver) {
+                System.out.println(Colors.RED + "GAME OVER");
+            }
     }
 
     /**
