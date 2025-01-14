@@ -11,7 +11,7 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
-
+    String[] townSearch;
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      *
@@ -29,6 +29,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        townSearch = new String[]{"Mountains", "Ocean", "Plains", "Desert", "Marsh", "Jungle"};
     }
 
     public Terrain getTerrain() {
@@ -68,11 +69,24 @@ public class Town {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, your " + item + " broke.";
             }
+            int idx = 0;
+            for (int i = 0; i < townSearch.length; i++) {
+                String tmpItem = townSearch[i];
+
+                if (item.equals(tmpItem)) {
+                    idx =  i;
+                }
+            }
+            townSearch[idx] = "searched";
             return true;
         }
 
         printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
+    }
+
+    public String[] getTownSearch() {
+        return townSearch;
     }
 
     /**
