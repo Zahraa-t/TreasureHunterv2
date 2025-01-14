@@ -36,9 +36,7 @@ public class TreasureHunter {
             welcomePlayer();
             enterTown();
             showMenu();
-            if (gameOver){
-                System.out.println(Colors.RED+"GAME OVER");
-            }
+            System.out.println(Colors.RED+"GAME OVER");
     }
 
     /**
@@ -105,7 +103,6 @@ public class TreasureHunter {
         String choice = "";
         while (!choice.equals("x")&&!gameOver) {
             System.out.println();
-            System.out.println(currentTown.getLatestNews());
             System.out.println("***");
             System.out.println(hunter.infoString());
             System.out.println(currentTown.infoString());
@@ -119,6 +116,7 @@ public class TreasureHunter {
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
+            System.out.println(currentTown.getLatestNews()); //BRAWL IS PRINTED HERE
         }
     }
 
@@ -139,14 +137,14 @@ public class TreasureHunter {
                 }
             } else if (choice.equals("l")) {
                 currentTown.lookForTrouble();
-                if (hunter.gameOver()){
-                    gameOver=true;
-                }
             } else if (choice.equals("x")) {
                 System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
             } else {
                 System.out.println("Yikes! That's an invalid option! Try again.");
             }
+        if (hunter.gameOver()){
+            gameOver=true;
+        }
 
     }
 
