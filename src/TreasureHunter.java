@@ -16,6 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean gameOver;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -25,15 +26,19 @@ public class TreasureHunter {
         currentTown = null;
         hunter = null;
         hardMode = false;
+        gameOver = false;
     }
 
     /**
      * Starts the game; this is the only public method
      */
     public void play() {
-        welcomePlayer();
-        enterTown();
-        showMenu();
+            welcomePlayer();
+            enterTown();
+            showMenu();
+            if (gameOver){
+                System.out.println(Colors.RED+"GAME OVER");
+            }
     }
 
     /**
@@ -98,7 +103,7 @@ public class TreasureHunter {
      */
     private void showMenu() {
         String choice = "";
-        while (!choice.equals("x")) {
+        while (!choice.equals("x")&&!gameOver) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -122,25 +127,27 @@ public class TreasureHunter {
      * @param choice The action to process.
      */
     private void processChoice(String choice) {
-        if (choice.equals("b") || choice.equals("s")) {
-            currentTown.enterShop(choice);
-        } else if (choice.equals("e")) {
-            System.out.println(currentTown.getTerrain().infoString());
-        } else if (choice.equals("m")) {
-            if (currentTown.leaveTown()) {
-                // This town is going away so print its news ahead of time.
-                System.out.println(currentTown.getLatestNews());
-                enterTown();
+            if (choice.equals("b") || choice.equals("s")) {
+                currentTown.enterShop(choice);
+            } else if (choice.equals("e")) {
+                System.out.println(currentTown.getTerrain().infoString());
+            } else if (choice.equals("m")) {
+                if (currentTown.leaveTown()) {
+                    // This town is going away so print its news ahead of time.
+                    System.out.println(currentTown.getLatestNews());
+                    enterTown();
+                }
+            } else if (choice.equals("l")) {
+                currentTown.lookForTrouble();
+                if (hunter.gameOver()){
+                    gameOver=true;
+                }
+            } else if (choice.equals("x")) {
+                System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+            } else {
+                System.out.println("Yikes! That's an invalid option! Try again.");
             }
-        } else if (choice.equals("l")) {
-            currentTown.lookForTrouble();
-        } else if (choice.equals("x")) {
-            System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
-        }else if (hunter.gameOver()){
-            System.out.println("GAME OVER"); // TEST THIS PLEASE
-        } else {
-            System.out.println("Yikes! That's an invalid option! Try again.");
-        }
+
     }
 
 }
