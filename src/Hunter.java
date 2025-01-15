@@ -27,7 +27,7 @@ public class Hunter {
         if (test){
             kit = new String[]{"water", "rope", "boots", "machete", "horse", "boat","shovel"};
         } else {
-            kit = new String[7];
+            kit = new String[8];
         }
         treasureList = new String[3];
     }
@@ -61,7 +61,7 @@ public class Hunter {
      * @return true if the item is successfully bought.
      */
     public boolean buyItem(String item, int costOfItem) {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item)) {
+        if (costOfItem == -1 || gold < costOfItem || hasItemInKit(item)) {
             return false;
         }
         gold -= costOfItem;

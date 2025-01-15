@@ -18,7 +18,7 @@ public class TreasureHunter {
     private boolean hardMode;
     private boolean easyMode;
     private boolean gameOver;
-    private boolean exit;
+    private boolean samurai;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -30,7 +30,7 @@ public class TreasureHunter {
         hardMode = false;
         easyMode = false;
         gameOver = false;
-        exit = false;
+        samurai = false;
     }
 
     /**
@@ -67,6 +67,9 @@ public class TreasureHunter {
             hunter = new Hunter(name, 40, false);
         } else if (hard.equals("test")){
             hunter = new Hunter(name, 100, true);
+        } else if (hard.equals("s")){
+            samurai = true;
+            hunter = new Hunter(name,20,false);
         } else {
             hunter = new Hunter(name, 20, false);
         }
@@ -92,7 +95,7 @@ public class TreasureHunter {
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
         // variable; we can leave it as a local variable
-        Shop shop = new Shop(markdown);
+        Shop shop = new Shop(markdown, samurai);
 
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
@@ -156,7 +159,6 @@ public class TreasureHunter {
                 currentTown.lookForTrouble();
             } else if (choice.equals("x")) {
                 System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
-                exit = true;
             } else if (choice.equals("d")){
                 currentTown.dig();
             } else {
