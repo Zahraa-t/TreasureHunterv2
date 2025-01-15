@@ -13,8 +13,8 @@ public class Town {
     private boolean toughTown;
     private boolean dug;
     private boolean easy;
+    private boolean townSearch;
 
-    String[] townSearch;
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      *
@@ -32,7 +32,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
-        townSearch = new String[]{"Mountains", "Ocean", "Plains", "Desert", "Marsh", "Jungle"};
+        townSearch = false;
         dug = false;
         easy = e;
     }
@@ -79,25 +79,12 @@ public class Town {
                     printMessage += "\nUnfortunately, you lost your " + item;
                 }
             }
-            int idx = 0;
-            for (int i = 0; i < townSearch.length; i++) {
-                String tmpItem = townSearch[i];
-
-                if (item.equals(tmpItem)) {
-                    idx =  i;
-                }
-            }
-            townSearch[idx] = "searched";
-            return true;
         }
 
         printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
     }
 
-    public String[] getTownSearch() {
-        return townSearch;
-    }
 
     /**
      * Handles calling the enter method on shop whenever the user wants to access the shop.
@@ -159,6 +146,57 @@ public class Town {
         } else {
             System.out.println("You already dug for gold in this town.");
         }
+    }
+
+    public String getTreasure() {
+        if (!townSearch) {
+            String treasureItem;
+            int rand = (int) (Math.random() * 4) + 1;
+            townSearch = true;
+            if (rand == 1) {
+                treasureItem = "a crown";
+            } else if (rand == 2) {
+                treasureItem = "a trophy";
+            } else if (rand == 3){
+                treasureItem = "a gem";
+            } else {
+                treasureItem = "dust";
+                return "You found " + treasureItem + "...\n";
+            }
+            if (!hasTreasure(treasureItem)){
+                addTreasure(treasureItem);
+                return "You found " + treasureItem + "!\n";
+            } else {
+                return "You have already collected this treasure\n";
+            }
+        } else {
+            return "You have already searched this town\n";
+        }
+    }
+
+    private void addTreasure(String treasure1) {
+        if (!hasTreasure(treasure1)) {
+            int idx = emptyPos();
+            hunter.getTreasureList()[idx] = treasure1;
+        }
+    }
+
+    private boolean hasTreasure(String treasure) {
+        for (String item : hunter.getTreasureList()) {
+            if (treasure.equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int emptyPos() {
+        for (int i = 0; i < hunter.getTreasureList().length; i++) {
+            if (hunter.getTreasureList()[i] == null) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
