@@ -168,7 +168,11 @@ public class Shop {
         } else if (item.equals("shovel")){
             return SHOVEL_COST;
         } else if (item.equals("sword")){
-            return 0;
+            if (samurai) {
+                return 0;
+            } else {
+                return -1;
+            }
         } else {
             return -1;
         }
