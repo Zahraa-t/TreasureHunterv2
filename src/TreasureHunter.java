@@ -41,6 +41,7 @@ public class TreasureHunter {
             enterTown();
             showMenu();
             if (gameOver) {
+                System.out.println(currentTown.getLatestNews());
                 System.out.println(Colors.RED + "GAME OVER");
             }
     }
@@ -75,11 +76,11 @@ public class TreasureHunter {
      * Creates a new town and adds the Hunter to it.
      */
     private void enterTown() {
-        double markdown = 0.25;
+        double markdown = 0.5;
         double toughness = 0.4;
         if (hardMode) {
             // in hard mode, you get less money back when you sell items
-            markdown = 0.5;
+            markdown = 0.25;
 
             // and the town is "tougher"
             toughness = 0.75;
@@ -114,6 +115,7 @@ public class TreasureHunter {
         String choice = "";
         while (!choice.equals("x")&&!gameOver) {
             System.out.println();
+            System.out.println(currentTown.getLatestNews());
             System.out.println("***");
             System.out.println(hunter.infoString());
             System.out.println(currentTown.infoString());
@@ -129,9 +131,7 @@ public class TreasureHunter {
             System.out.print("What's your next move? ");
             choice = SCANNER.nextLine().toLowerCase();
             processChoice(choice);
-            if (!exit) {
-                System.out.println(currentTown.getLatestNews());//BRAWL IS PRINTED HERE
-            }
+
         }
     }
 
