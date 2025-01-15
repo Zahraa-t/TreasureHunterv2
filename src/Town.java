@@ -214,7 +214,6 @@ public class Town {
      */
     private Terrain getNewTerrain() {
         int rnd = (int) (Math.random()*6)+1;
-        rnd = 5;
         if (rnd == 1) {
             return new Terrain("Mountains", "Rope");
         } else if (rnd == 2) {
