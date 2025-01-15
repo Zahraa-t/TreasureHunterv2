@@ -9,6 +9,7 @@ public class Hunter {
     private String hunterName;
     private String[] kit;
     private int gold;
+    private String[] treasureList;
 
 
     /**
@@ -26,11 +27,14 @@ public class Hunter {
         if (test){
             kit = new String[]{"water", "rope", "boots", "machete", "horse", "boat"};
         } else {
-            kit = new String[10];
+            kit = new String[7];
         }
+        treasureList = new String[3];
     }
 
-
+    public String[] getTreasureList() {
+        return treasureList;
+    }
     //Accessors
     public String getHunterName() {
         return hunterName;
