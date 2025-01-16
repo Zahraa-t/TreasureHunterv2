@@ -160,31 +160,31 @@ public class Town {
         }
     }
 
-    public void getTreasure() {
-        if (!townSearch) {
-            String treasureItem;
-            int rand = (int) (Math.random() * 4) + 1;
-            townSearch = true;
-            if (rand == 1) {
-                treasureItem = "a crown";
-            } else if (rand == 2) {
-                treasureItem = "a trophy";
-            } else if (rand == 3){
-                treasureItem = "a gem";
-            } else {
-                treasureItem = "dust";
-                printMessage = "You found " + treasureItem + "...\n";
-            }
-            if (!hasTreasure(treasureItem)){
-                addTreasure(treasureItem);
-                printMessage = "You found " + treasureItem + "!\n";
-            } else {
-                printMessage = "You have already collected this treasure\n";
-            }
-        } else {
-            printMessage = "You have already searched this town\n";
-        }
-    }
+//    public String getTreasure() {
+//        if (!townSearch) {
+//            String treasureItem;
+//            int rand = (int) (Math.random() * 4) + 1;
+//            townSearch = true;
+//            if (rand == 1) {
+//                treasureItem = "a crown";
+//            } else if (rand == 2) {
+//                treasureItem = "a trophy";
+//            } else if (rand == 3){
+//                treasureItem = "a gem";
+//            } else {
+//                treasureItem = "dust";
+//                return "You found " + treasureItem + "...\n";
+//            }
+//            if ((!hasTreasure(treasureItem))&&rand!=1 && rand!=2 && rand!=3){
+//                addTreasure(treasureItem);
+//                printMessage = "You found " + treasureItem + "!\n";
+//            } else {
+//                printMessage = "You have already collected this treasure\n";
+//            }
+//        } else {
+//            printMessage = "You have already searched this town\n";
+//        }
+//    }
 
     private void addTreasure(String treasure1) {
         if (!hasTreasure(treasure1)) {
