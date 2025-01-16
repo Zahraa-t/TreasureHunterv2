@@ -160,7 +160,7 @@ public class Town {
         }
     }
 
-    public String getTreasure() {
+    public void getTreasure() {
         if (!townSearch) {
             String treasureItem;
             int rand = (int) (Math.random() * 4) + 1;
@@ -173,16 +173,16 @@ public class Town {
                 treasureItem = "a gem";
             } else {
                 treasureItem = "dust";
-                return "You found " + treasureItem + "...\n";
+                printMessage = "You found " + treasureItem + "...\n";
             }
             if (!hasTreasure(treasureItem)){
                 addTreasure(treasureItem);
-                return "You found " + treasureItem + "!\n";
+                printMessage = "You found " + treasureItem + "!\n";
             } else {
-                return "You have already collected this treasure\n";
+                printMessage = "You have already collected this treasure\n";
             }
         } else {
-            return "You have already searched this town\n";
+            printMessage = "You have already searched this town\n";
         }
     }
 
