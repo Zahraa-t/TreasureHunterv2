@@ -118,7 +118,7 @@ public class Town {
                 printMessage += "\nYou won the \"brawl\" and receive " + Colors.RESET + Colors.YELLOW + goldDiff + Colors.RESET + Colors.RED + " gold." + Colors.RESET;
                 hunter.changeGold(goldDiff);
             } else {
-                printMessage += "Oof! Umph! Ow!\n" + Colors.RED;
+                printMessage += Colors.RED+"Oof! Umph! Ow!\n";
                 if (Math.random() > noTroubleChance) {
                     printMessage += Colors.RED + "Okay, stranger! You proved yer mettle. Here, take my gold.";
                     printMessage += "\nYou won the brawl and receive " + Colors.RESET + Colors.YELLOW + goldDiff + Colors.RESET + Colors.RED + " gold." + Colors.RESET;
