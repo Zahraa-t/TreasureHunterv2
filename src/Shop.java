@@ -53,6 +53,8 @@ public class Shop {
             int cost = checkMarketPrice(item, true);
             if (cost == -1) {
                 System.out.println("We ain't got none of those.");
+            } else if (customer.hasItemInKit(item)||cost>customer.getGold()){
+                System.out.println("Either you have this item already or you can't afford this");
             } else {
                 if (hunter.hasItemInKit("sword")){
                     System.out.println("The shopkeeper notices your sword and lets you take the item for free.");
