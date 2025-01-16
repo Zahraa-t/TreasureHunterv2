@@ -207,6 +207,34 @@ public class Town {
         return -1;
     }
 
+    public String treasureinfoString() {
+        String str = "Treasures found: ";
+        if (!treasureIsEmpty()) {
+            str += getInventory();
+        }
+        return str;
+    }
+
+    private boolean treasureIsEmpty() {
+        for (String string : hunter.getTreasureList()) {
+            if (string != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String getInventory() {
+        String print = "";
+        String space = " ";
+        for (String item :  hunter.getTreasureList()) {
+            if (item != null) {
+                print += Colors.BLUE + item + Colors.RESET + space;
+            }
+        }
+        return print;
+    }
+
     /**
      * Determines the surrounding terrain for a town, and the item needed in order to cross that terrain.
      *

@@ -121,6 +121,7 @@ public class TreasureHunter {
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
             System.out.println(hunter.infoString());
+            System.out.println(currentTown.treasureinfoString());
             System.out.println(currentTown.infoString());
             System.out.println("(B)uy something at the shop.");
             System.out.println("(S)ell something at the shop.");
