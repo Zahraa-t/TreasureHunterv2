@@ -219,7 +219,7 @@ public class Town {
         return str;
     }
 
-    private boolean treasureIsEmpty() {
+    public boolean treasureIsEmpty() {
         for (String string : hunter.getTreasureList()) {
             if (string != null) {
                 return false;
@@ -260,6 +260,19 @@ public class Town {
 //        }
 //        return false;
 //    }
+
+    public boolean isTreasureFull() {
+        int count = 0;
+        for (String string : hunter.getTreasureList()) {
+            if (string != null) {
+                count++;
+            }
+        }
+        if (count == 3) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Determines the surrounding terrain for a town, and the item needed in order to cross that terrain.

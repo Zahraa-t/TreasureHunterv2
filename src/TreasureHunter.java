@@ -168,12 +168,11 @@ public class TreasureHunter {
         if (hunter.gameOver()){
             gameOver=true;
         }
-//        if (currentTown.emptyPos() != -1) {
-//            if(currentTown.completedTreasures()) {
-//                gameOver = true;
-//            }
-//        }
+        if (currentTown.isTreasureFull()) {
+            System.out.println("Congrats! You found the last of the three treasures, " + Colors.GREEN + "you win!" + Colors.RESET);
+                gameOver = true;
+            }
+        }
 
     }
 
-}
