@@ -43,7 +43,7 @@ public class TreasureHunter {
             showMenu();
             if (gameOver) {
                 System.out.println(currentTown.getLatestNews());
-                System.out.println(Colors.RED + "GAME OVER");
+                System.out.println(Colors.PURPLE + "GAME OVER");
             }
             if (gameWin) {
                 System.out.println("Congrats! You found the last of the three treasures, " + Colors.GREEN + "you win!" + Colors.RESET);
