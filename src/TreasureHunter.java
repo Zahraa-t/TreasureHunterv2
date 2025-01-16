@@ -168,6 +168,11 @@ public class TreasureHunter {
         if (hunter.gameOver()){
             gameOver=true;
         }
+//        if (currentTown.emptyPos() != -1) {
+//            if(currentTown.completedTreasures()) {
+//                gameOver = true;
+//            }
+//        }
 
     }
 

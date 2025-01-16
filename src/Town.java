@@ -235,6 +235,28 @@ public class Town {
         return print;
     }
 
+//    public boolean completedTreasures() {
+//        hunter.getTreasureList();
+//        boolean check1 = false;
+//        boolean check2 = false;
+//        boolean check3 = false;
+//        for (String item :  hunter.getTreasureList()) {
+//            if (item.equals("a trophy")) {
+//            check1 = true;
+//            }
+//            if (item.equals("a crown")) {
+//                check1 = true;
+//            }
+//            if (item.equals("a gem")) {
+//                check1 = true;
+//            }
+//        }
+//        if (check1 && check2 && check3) {
+//            return true;
+//        }
+//        return false;
+//    }
+
     /**
      * Determines the surrounding terrain for a town, and the item needed in order to cross that terrain.
      *
