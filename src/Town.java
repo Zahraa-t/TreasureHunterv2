@@ -136,6 +136,10 @@ public class Town {
         return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
     }
 
+    /**
+     * Gives the hunter a chance to dig up some gold
+     * Only works once per town
+     */
     public void dig(){
         if (!isDug()) {
             if (hunter.hasItemInKit("shovel")) {
