@@ -118,7 +118,7 @@ public class Town {
                 printMessage += "\nYou won the \"brawl\" and receive " + Colors.RESET + Colors.YELLOW + goldDiff + Colors.RESET + Colors.RED + " gold." + Colors.RESET;
                 hunter.changeGold(goldDiff);
             } else {
-                printMessage += "Oof! Umph! Ow!\n" + Colors.RED;
+                printMessage += Colors.RED+"Oof! Umph! Ow!\n";
                 if (Math.random() > noTroubleChance) {
                     printMessage += Colors.RED + "Okay, stranger! You proved yer mettle. Here, take my gold.";
                     printMessage += "\nYou won the brawl and receive " + Colors.RESET + Colors.YELLOW + goldDiff + Colors.RESET + Colors.RED + " gold." + Colors.RESET;
@@ -136,23 +136,27 @@ public class Town {
         return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
     }
 
+    /**
+     * Gives the hunter a chance to dig up some gold
+     * Only works once per town
+     */
     public void dig(){
         if (!isDug()) {
             if (hunter.hasItemInKit("shovel")) {
                 int randomNum = (int) (Math.random() * 2) + 1;
                 if (randomNum == 1) {
                     int goldDug = (int)(Math.random()*20)+1;
-                    System.out.println("You dug up " +goldDug+" gold!");
+                    printMessage = "You dug up " +goldDug+" gold!";
                     hunter.changeGold(goldDug);
                 } else {
-                    System.out.println("You dug but only found dirt");
+                    printMessage = "You dug but only found dirt";
                 }
                 dug = true;
             } else {
-                System.out.println("You can't dig for gold without a shovel!");
+                printMessage = "You can't dig for gold without a shovel!";
             }
         } else {
-            System.out.println("You already dug for gold in this town.");
+            printMessage = "You already dug for gold in this town.";
         }
     }
 
