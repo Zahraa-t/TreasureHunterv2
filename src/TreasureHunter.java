@@ -18,6 +18,7 @@ public class TreasureHunter {
     private boolean hardMode;
     private boolean easyMode;
     private boolean gameOver;
+    private boolean gameWin;
     private boolean samurai;
 
     /**
@@ -43,6 +44,9 @@ public class TreasureHunter {
             if (gameOver) {
                 System.out.println(currentTown.getLatestNews());
                 System.out.println(Colors.RED + "GAME OVER");
+            }
+            if (gameWin) {
+                System.out.println("Congrats! You found the last of the three treasures, " + Colors.GREEN + "you win!" + Colors.RESET);
             }
     }
 
@@ -116,7 +120,7 @@ public class TreasureHunter {
      */
     private void showMenu() {
         String choice = "";
-        while (!choice.equals("x")&&!gameOver) {
+        while (!choice.equals("x")&&!gameOver&&!gameWin) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -169,8 +173,7 @@ public class TreasureHunter {
             gameOver=true;
         }
         if (currentTown.isTreasureFull()) {
-            System.out.println("Congrats! You found the last of the three treasures, " + Colors.GREEN + "you win!" + Colors.RESET);
-                gameOver = true;
+                gameWin = true;
             }
         }
 
