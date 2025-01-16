@@ -42,7 +42,7 @@ public class TreasureHunter {
             showMenu();
             if (gameOver) {
                 System.out.println(currentTown.getLatestNews());
-                System.out.println(Colors.RED + "GAME OVER");
+                System.out.println(Colors.PURPLE + "GAME OVER");
             }
     }
 
