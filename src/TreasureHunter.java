@@ -159,7 +159,7 @@ public class TreasureHunter {
                     enterTown();
                 }
             } else if (choice.equals("h")) {
-                currentTown.getTreasure();
+                System.out.println(currentTown.getTreasure());
             } else if (choice.equals("l")) {
                 currentTown.lookForTrouble();
             } else if (choice.equals("x")) {
